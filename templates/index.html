@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chatty</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+     {{username | json_script:"username" }}
+     {{userid | json_script:"userid" }}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <ul class="list-group mt-3" style="list-style: none;">
+          {% for user in users %}
+            <li class="my-1 p-3 border border-dark rounded user-item" data-number="{{user.mobile}}" id="user_{{user.first_name}}{{user.last_name}}">
+              {{user.first_name}} {{user.last_name}}
+            </li>
+          {% endfor %}
+          </ul>      
+        </div>
+        <div class="col-md-9 my-3">
+          <div>
+
+            <div class="border border-dark border-bottom-0 d-flex align-items-center" style="height: 50px">
+              <!-- <img
+                src="./images/profile1.jpeg"
+                alt=""
+                style="height: 45px; width: 45px;object-fit: contain;"
+                class="rounded-circle mx-2 image-fluid"
+              /> -->
+              <small class="mx-2" id="receiver_name" data-test="test">
+                Get someone to chat...
+              </small>
+              <a href="/account/logout/" class="ms-auto me-2 text-dark">
+                <i>
+                  Logout
+                </i>
+              </a>
+            </div>
+
+            <div class="border border-dark p-3" style="height: 600px;overflow-y: scroll;" id="msg_box">
+
+              <!-- <div class="d-flex justify-content-start my-1">
+                 <span class="border py-2 px-2 rounded" style="max-width: 50%;">
+                   Hello world
+                 </span> 
+              </div>
+
+              <div class="d-flex justify-content-end my-1">
+                 <span class="border py-2 px-2 rounded border-dark" style="max-width: 50%;">
+                   Hello world
+                 </span> 
+              </div>
+
+
+              <div class="d-flex justify-content-start my-1">
+                 <span class="border py-2 px-2 rounded" style="max-width: 50%;">
+                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum, aperiam dolores numquam dolorem eius doloribus placeat at eaque accusantium cum accusamus soluta consequuntur maiores expedita excepturi, quam labore atque amet!
+                 </span> 
+              </div> -->
+
+
+
+            </div>
+
+            <div class="border border-dark border-top-0" style="height: 50px">
+              <input
+                type="text"
+                class="form-control border-0"
+                placeholder="write your msg here..."
+                style="box-shadow: none;"
+                id="input"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{%static 'main.js' %}"></script>
+  </body>
+</html>
